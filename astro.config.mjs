@@ -11,6 +11,7 @@ import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/uti
 import { ANALYTICS, SITE } from './src/utils/config.ts';
 import netlify from "@astrojs/netlify";
 import vue from "@astrojs/vue";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const whenExternalScripts = (items = []) => ANALYTICS.vendors.googleAnalytics.id && ANALYTICS.vendors.googleAnalytics.partytown ? Array.isArray(items) ? items.map(item => item()) : [items()] : [];
 
@@ -19,8 +20,8 @@ const whenExternalScripts = (items = []) => ANALYTICS.vendors.googleAnalytics.id
 export default defineConfig({
   site: SITE.site,
   base: SITE.base,
+  output:'hybrid',
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
-  output: 'hybrid',
   integrations: [tailwind({
     applyBaseStyles: false
   }), sitemap(), mdx(), icon({
